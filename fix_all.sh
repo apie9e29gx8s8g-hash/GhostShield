@@ -1,0 +1,35 @@
+#!/bin/bash
+echo "🔧 جاري التعديل النهائي على جميع الملفات..."
+
+# 1. إصلاح ملف build.gradle (التطبيق)
+cat > app/build.gradle << 'EOF'
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+android {
+    namespace 'com.example.ghostshield'
+    compileSdk 33
+    defaultConfig {
+        applicationId 'com.example.ghostshield'
+        minSdk 21
+        targetSdk 33
+        versionCode 1
+        versionName '1.0'
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+}
